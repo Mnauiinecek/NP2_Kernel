@@ -83,7 +83,7 @@ jobs:
 
           # SUSFS (only for SUSFS variant)
           if [ "${{ matrix.susfs }}" = "true" ]; then
-            git clone --depth=1 -b gki-android12-5.10 \
+            git clone --depth=1 -b gki-android13-5.10 \
               https://gitlab.com/simonpunk/susfs4ksu.git
           fi
 
@@ -102,7 +102,7 @@ jobs:
           cp ../susfs4ksu/kernel_patches/include/linux/* ./include/linux/
 
           # Apply kernel patch
-          patch -p1 < ../susfs4ksu/kernel_patches/50_add_susfs_in_gki-android12-5.10.patch || true
+          patch -p1 < ../susfs4ksu/kernel_patches/50_add_susfs_in_gki-android13-5.10.patch || true
 
       - name: Configure kernel
         run: |
