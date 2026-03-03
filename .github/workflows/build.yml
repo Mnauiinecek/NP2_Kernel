@@ -26,7 +26,7 @@ on:
         description: 'Extra config fragments to merge (space-separated, relative to arch/arm64/configs/)'
         required: false
         type: string
-        default: 'vendor/waipio_GKI.config vendor/nothing/waipio_GKI.config vendor/debugfs.config'
+        default: 'vendor/waipio_GKI.config vendor/nothing/waipio_GKI.config'
 
   workflow_call:
     inputs:
@@ -45,7 +45,7 @@ on:
       extra_configs:
         required: false
         type: string
-        default: 'vendor/waipio_GKI.config vendor/nothing/waipio_GKI.config vendor/debugfs.config'
+        default: 'vendor/waipio_GKI.config vendor/nothing/waipio_GKI.config'
 
 jobs:
   build:
