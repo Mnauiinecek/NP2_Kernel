@@ -55,6 +55,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 120
+    env:
+      MAKE_ARGS: >-
+        ARCH=arm64
+        CROSS_COMPILE=aarch64-linux-gnu-
+        LLVM=1 LLVM_IAS=1
+        LD=ld.lld HOSTLD=ld.lld
+        CC=clang CXX=clang++
+        O=out
     strategy:
       fail-fast: false
       matrix:
@@ -116,14 +124,6 @@ jobs:
           grep -q 'susfs\.o' fs/Makefile || echo 'obj-y += susfs.o' >> fs/Makefile
 
       - name: Configure kernel
-        env:
-          MAKE_ARGS: >-
-            ARCH=arm64
-            CROSS_COMPILE=aarch64-linux-gnu-
-            LLVM=1 LLVM_IAS=1
-            LD=ld.lld HOSTLD=ld.lld
-            CC=clang CXX=clang++
-            O=out
         run: |
           cd kernel
           DEFCONFIG="./arch/arm64/configs/${{ inputs.kernel_defconfig || 'gki_defconfig' }}"
@@ -215,14 +215,7 @@ jobs:
           JOBS=$(( $(nproc) / 2 ))
           [ "$JOBS" -lt 1 ] && JOBS=1
 
-          make -j$JOBS \
-            ARCH=arm64 \
-            CROSS_COMPILE=aarch64-linux-gnu- \
-            LLVM=1 LLVM_IAS=1 \
-            LD=ld.lld HOSTLD=ld.lld \
-            CC=clang CXX=clang++ \
-            KCFLAGS="-Wno-error" \
-            O=out
+          make -j$JOBS $MAKE_ARGS KCFLAGS="-Wno-error"
 
       - name: Package AnyKernel3
         run: |
@@ -247,7 +240,7 @@ jobs:
           # Create zip
           cd AnyKernel3
           ZIP_NAME="${{ matrix.variant }}-NP2-Pong.zip"
-          zip -r "../$ZIP_NAME" ./*
+          zip -r9 "../$ZIP_NAME" ./*
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
