@@ -71,8 +71,6 @@ jobs:
         include:
           - variant: WKSU-SUSFS
             susfs: true
-          - variant: WKSU
-            susfs: false
 
     steps:
       - name: Checkout repo
