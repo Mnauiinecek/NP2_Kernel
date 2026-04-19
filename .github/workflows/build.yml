@@ -106,7 +106,7 @@ jobs:
       - name: Setup WKSU
         run: |
           cd kernel
-          curl -LSs "https://raw.githubusercontent.com/WildKernels/Wild_KSU/wild/kernel/setup.sh" | bash -s dev
+          curl -LSs "https://raw.githubusercontent.com/WildKernels/Wild_KSU/wild/kernel/setup.sh" | bash -s v3.1.2
 
       - name: Apply SUSFS patches
         if: matrix.susfs
