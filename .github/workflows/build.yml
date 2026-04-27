@@ -11,17 +11,17 @@ on:
         description: 'Kernel source repo'
         required: false
         type: string
-        default: 'https://github.com/arter97/android_kernel_nothing_sm8475.git'
+        default: 'https://github.com/LineageOS/android_kernel_nothing_sm8475.git'
       kernel_branch:
         description: 'Kernel branch'
         required: false
         type: string
-        default: 'master'
+        default: 'lineage-23.2'
       kernel_defconfig:
-        description: 'Defconfig (relative to arch/)'
+        description: 'Defconfig (relative to arch/arm64/configs/)'
         required: false
         type: string
-        default: 'defconfig'
+        default: 'gki_defconfig'
       extra_configs:
         description: 'Extra config fragments to merge (space-separated, relative to arch/arm64/configs/)'
         required: false
@@ -33,15 +33,15 @@ on:
       kernel_repo:
         required: false
         type: string
-        default: 'https://github.com/arter97/android_kernel_nothing_sm8475.git'
+        default: 'https://github.com/LineageOS/android_kernel_nothing_sm8475.git'
       kernel_branch:
         required: false
         type: string
-        default: 'master'
+        default: 'lineage-23.2'
       kernel_defconfig:
         required: false
         type: string
-        default: 'defconfig'
+        default: 'gki_defconfig'
       extra_configs:
         required: false
         type: string
@@ -77,8 +77,8 @@ jobs:
       - name: Clone sources
         run: |
           # Kernel
-          git clone --depth=1 -b "${{ inputs.kernel_branch || 'master' }}" \
-            "${{ inputs.kernel_repo || 'https://github.com/arter97/android_kernel_nothing_sm8475.git' }}" \
+          git clone --depth=1 -b "${{ inputs.kernel_branch || 'lineage-23.2' }}" \
+            "${{ inputs.kernel_repo || 'https://github.com/LineageOS/android_kernel_nothing_sm8475.git' }}" \
             kernel
 
           # AnyKernel3
@@ -124,7 +124,7 @@ jobs:
       - name: Configure kernel
         run: |
           cd kernel
-          DEFCONFIG="./${{ inputs.kernel_defconfig || 'defconfig' }}"
+          DEFCONFIG="./arch/arm64/configs/${{ inputs.kernel_defconfig || 'gki_defconfig' }}"
 
           # Merge extra config fragments into defconfig (if any)
           EXTRA="${{ inputs.extra_configs }}"
@@ -144,7 +144,7 @@ jobs:
           echo "CONFIG_KSU_SUSFS=y" >> "$DEFCONFIG"
 
           # Generate initial .config from defconfig
-          make $MAKE_ARGS "${{ inputs.kernel_defconfig || 'defconfig' }}"
+          make $MAKE_ARGS "${{ inputs.kernel_defconfig || 'gki_defconfig' }}"
 
           # Force-set configs via scripts/config so Kconfig cannot silently drop them
           KCFG="./scripts/config --file out/.config"
