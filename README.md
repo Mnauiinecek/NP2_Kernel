@@ -2,21 +2,20 @@
 
 Custom kernel for **Nothing Phone 2 (Pong)** with root and hiding built in.
 
-Based on [LineageOS kernel](https://github.com/LineageOS/android_kernel_nothing_sm8475.git) (android13-5.10, sublevel 246). Works with EvoX, LineageOS, and any ROM using this kernel base, others ROMs may work but aren't officially supported by me.
+Based on [LineageOS kernel](https://github.com/LineageOS/android_kernel_nothing_sm8475.git) (android13-5.10, sublevel 246).
+Integrates [ReSukiSU](https://github.com/ReSukiSU/ReSukiSU) for root and [SuSFS](https://gitlab.com/simonpunk/susfs4ksu) for hiding.
 
 ## Features
 
-- **[WildKSU](https://github.com/WildKernels/Wild_KSU)**: Kernel-level root (KernelSU fork)
+- **[ReSukiSU](https://github.com/ReSukiSU/ReSukiSU)**: Kernel-level root (SukiSU-Ultra fork)
 - **[SUSFS](https://gitlab.com/simonpunk/susfs4ksu)**: Hide root from banking apps, games, and safety checks
-- **Thin LTO** - Link-time optimization for performance
-- **GKI compatible** - Proper vendor module support
 
 ## Install
 
 1. Download the AnyKernel3 zip from [Releases](https://github.com/MiguVT/NP2_Kernel/releases)
 2. Boot into recovery (TWRP / OrangeFox)
 3. Flash the zip → reboot
-4. Install [WildKSU Manager](https://github.com/WildKernels/Wild_KSU/releases) to manage root
+4. Install [ReSukiSU Manager](https://resukisu.github.io/guide/install.html#Get-manager) to manage root (Under development but recommended), you could use other KSU-based manager but no guarantee
 
 > **Backup your stock boot image first.** Bootloader must be unlocked. Use at your own risk.
 
@@ -27,8 +26,8 @@ Based on [LineageOS kernel](https://github.com/LineageOS/android_kernel_nothing_
 3. Download the zip from the completed run
 
 Two variants are built automatically:
-- **WKSU-SUSFS** - WildKSU + SUSFS (recommended)
-- **WKSU** - WildKSU only
+- **ReSukiSU-SUSFS** - ReSukiSU + SUSFS (recommended)
+- **ReSukiSU** - ReSukiSU only
 
 <details>
 <summary>Workflow inputs</summary>
