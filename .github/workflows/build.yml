@@ -62,6 +62,8 @@ jobs:
         HOSTCC=clang HOSTCXX=clang++
         O=out
       LLVM_AR: /usr/bin/llvm-ar
+      LLVM_OBJDUMP: /usr/bin/llvm-objdump
+      LLVM_NM: /usr/bin/llvm-nm
 
     steps:
       - name: Checkout repo
