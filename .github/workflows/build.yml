@@ -99,7 +99,7 @@ jobs:
 
           # SUSFS (only for SUSFS variant)
           if [ "${{ matrix.susfs }}" = "true" ]; then
-            git clone --depth=1 -b gki-android13-5.10 \
+            git clone --depth=1 -b gki-android12-5.10 \
               https://gitlab.com/simonpunk/susfs4ksu.git
           fi
 
