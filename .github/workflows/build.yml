@@ -61,6 +61,7 @@ jobs:
         CC=clang CXX=clang++
         HOSTCC=clang HOSTCXX=clang++
         O=out
+      LLVM_AR: /usr/bin/llvm-ar
 
     steps:
       - name: Checkout repo
@@ -74,8 +75,7 @@ jobs:
             lz4 zip python3 clang llvm lld gcc-aarch64-linux-gnu \
             gcc-arm-linux-gnueabi
 
-      - name: Temporal debug (Find llvm path)
-        run: which llvm-ar; exit 0
+
       - name: Clone sources
         run: |
           # Kernel
