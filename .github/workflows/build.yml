@@ -74,6 +74,8 @@ jobs:
             lz4 zip python3 clang llvm lld gcc-aarch64-linux-gnu \
             gcc-arm-linux-gnueabi
 
+      - name: Temporal debug (Find llvm path)
+        run: which llvm-ar; exit 0
       - name: Clone sources
         run: |
           # Kernel
