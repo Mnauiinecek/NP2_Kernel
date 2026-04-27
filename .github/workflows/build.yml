@@ -11,22 +11,22 @@ on:
         description: 'Kernel source repo'
         required: false
         type: string
-        default: 'https://github.com/LineageOS/android_kernel_nothing_sm8475.git'
+        default: 'https://github.com/arter97/android_kernel_nothing_sm8475.git'
       kernel_branch:
         description: 'Kernel branch'
         required: false
         type: string
-        default: 'lineage-23.2'
+        default: 'master'
       kernel_defconfig:
-        description: 'Defconfig (relative to arch/arm64/configs/)'
+        description: 'Defconfig (relative to root)'
         required: false
         type: string
-        default: 'gki_defconfig'
+        default: 'defconfig'
       extra_configs:
-        description: 'Extra config fragments to merge (space-separated, relative to arch/arm64/configs/)'
+        description: 'Extra config fragments to merge (space-separated, relative to /)'
         required: false
         type: string
-        default: 'vendor/waipio_GKI.config vendor/nothing/waipio_GKI.config vendor/debugfs.config'
+        default: ''
 
   workflow_call:
     inputs:
@@ -129,13 +129,13 @@ jobs:
       - name: Configure kernel
         run: |
           cd kernel
-          DEFCONFIG="./arch/arm64/configs/${{ inputs.kernel_defconfig || 'gki_defconfig' }}"
+          DEFCONFIG="./${{ inputs.kernel_defconfig || 'gki_defconfig' }}"
 
           # Merge extra config fragments into defconfig (if any)
           EXTRA="${{ inputs.extra_configs }}"
           if [ -n "$EXTRA" ]; then
             for frag in $EXTRA; do
-              FRAG_PATH="./arch/arm64/configs/$frag"
+              FRAG_PATH="./$frag"
               if [ -f "$FRAG_PATH" ]; then
                 echo "Merging: $frag"
                 cat "$FRAG_PATH" >> "$DEFCONFIG"
