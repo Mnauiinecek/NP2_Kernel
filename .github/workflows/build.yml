@@ -130,7 +130,7 @@ jobs:
         run: |
           cd kernel
           # Apply ReSukiSU patches
-          for patch in ../patches/*.patch; do
+          find ../patches -type f -name '*.diff' | while read -r patch; do
             echo "Applying $patch"
             patch -p1 < "$patch"
           done
