@@ -104,7 +104,7 @@ jobs:
       - name: Setup WKSU
         run: |
           cd kernel
-          curl -LSs "https://github.com/pershoot/KernelSU-Next" | bash -s dev-susfs
+          curl -LSs "https://raw.githubusercontent.com/pershoot/KernelSU-Next/dev-susfs/kernel/setup.sh" | bash -s dev-susfs
 
       - name: Apply SUSFS patches
         if: matrix.susfs
