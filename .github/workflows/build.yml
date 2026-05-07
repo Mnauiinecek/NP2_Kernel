@@ -21,17 +21,22 @@ on:
         description: 'Enable KPM support'
         required: false
         type: boolean
-        default: false
+        default: true
       susfs_support:
         description: 'Enable SUSFS support'
         required: false
         type: boolean
         default: true
+      susfs_branch:
+        description: 'SUSFS branch (also selects patch name)'
+        required: false
+        type: string
+        default: 'gki-android13-5.10'
       bbg_support:
         description: 'Enable BBG support'
         required: false
         type: boolean
-        default: false
+        default: true
 
   workflow_call:
     inputs:
@@ -51,6 +56,10 @@ on:
         required: false
         type: boolean
         default: true
+      susfs_branch:
+        required: false
+        type: string
+        default: 'gki-android13-5.10'
       bbg_support:
         required: false
         type: boolean
@@ -99,7 +108,7 @@ jobs:
       - name: Clone SUSFS
         if: ${{ inputs.susfs_support == true }}
         run: |
-          git clone --depth=1 -b gki-android13-5.10 \
+          git clone --depth=1 -b "${{ inputs.susfs_branch || 'gki-android13-5.10' }}" \
             https://gitlab.com/simonpunk/susfs4ksu.git
 
       - name: Setup ReSukiSU
@@ -113,7 +122,7 @@ jobs:
           cd "$KERNEL_DIR"
           cp ../susfs4ksu/kernel_patches/fs/* ./fs/
           cp ../susfs4ksu/kernel_patches/include/linux/* ./include/linux/
-          patch -p1 < ../susfs4ksu/kernel_patches/50_add_susfs_in_gki-android13-5.10.patch
+          patch -p1 < ../susfs4ksu/kernel_patches/50_add_susfs_in_${{ inputs.susfs_branch || 'gki-android13-5.10' }}.patch
 
       - name: Apply BBG patches
         if: ${{ inputs.bbg_support == true }}
