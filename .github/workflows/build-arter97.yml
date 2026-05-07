@@ -30,6 +30,7 @@ jobs:
       kernel_repo: https://github.com/arter97/android_kernel_nothing_sm8475
       kernel_branch: master
       susfs_branch: gki-android12-5.10
+      extra_patches_dir: patches/arter97
       kpm_support: ${{ inputs.kpm_support }}
       susfs_support: ${{ inputs.susfs_support }}
       bbg_support: ${{ inputs.bbg_support }}
