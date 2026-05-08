@@ -43,5 +43,5 @@ jobs:
       extra_patches_dir: patches/arter97
       kpm_support: true
       susfs_support: true
-      susfs_force: true
+      susfs_force: false
       bbg_support: true
