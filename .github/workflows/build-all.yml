@@ -15,5 +15,5 @@ jobs:
       kernel_type: LineageOS
       kpm_support: true
       susfs_support: true
-      bbg_support: true
+      bbg_support: false
       susfs_force: false
