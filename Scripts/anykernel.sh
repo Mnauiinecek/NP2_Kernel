@@ -3,7 +3,6 @@
 
 ## AnyKernel setup
 properties() { '
-kernel.string=NP2 Kernel - KSU-Next
 kernel.string=NP2 Kernel - ReSukiSU
 do.devicecheck=1
 do.modules=0
@@ -28,4 +27,5 @@ patch_vbmeta_flag=auto;
 ## AnyKernel boot install
 split_boot;
 flash_boot;
+
 ## end boot install
