@@ -162,7 +162,7 @@ jobs:
 
           curl -LS https://storage.googleapis.com/mistrmochov-x/android_kernel_nothing_mt6886/kernel/gen_kheaders.sh -o "$KERNEL_DIR/kernel/gen_kheaders.sh"
 
-          git clone --depth=1 https://github.com/mistrmochov/AnyKernel3.git "$ANYKERNEL_DIR"
+          git clone --depth=1 https://github.com/Mnauiinecek/AnyKernel3.git "$ANYKERNEL_DIR"
           rm -rf "$ANYKERNEL_DIR/.git"
 
       - name: Clone SUSFS
