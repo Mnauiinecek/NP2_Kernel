@@ -149,9 +149,7 @@ jobs:
           sudo mkdir -p "$llvm_dir"
           for tool in clang clang++ llvm-ar llvm-nm llvm-objdump llvm-objcopy llvm-readelf llvm-strip ld.lld; do
             src=$(command -v "$tool" || true)
-            if [ -n "$src" ]; then
-              sudo ln -sf "$src" "$llvm_dir/$tool"
-            fi
+            [ -n "$src" ] && sudo ln -sf "$src" "$llvm_dir/$tool"
           done
 
       - name: Clone sources
@@ -159,7 +157,6 @@ jobs:
           git clone --depth=1 -b "${{ inputs.kernel_branch || 'lineage-23.2' }}" \
             "${{ inputs.kernel_repo || 'https://github.com/LineageOS/android_kernel_nothing_sm8475.git' }}" \
             "$KERNEL_DIR"
-
           git clone --depth=1 https://github.com/osm0sis/AnyKernel3.git "$ANYKERNEL_DIR"
           rm -rf "$ANYKERNEL_DIR/.git"
 
@@ -183,10 +180,10 @@ jobs:
             exit 1
           fi
           cd "$KERNEL_DIR"
-          while IFS= read -r -d '' patch; do
+          find "$patch_dir" -maxdepth 1 -type f \( -name '*.patch' -o -name '*.diff' \) -print0 | sort -z | while IFS= read -r patch; do
             echo "Applying $patch"
             patch -p1 < "$patch"
-          done < <(find "$patch_dir" -maxdepth 1 -type f \( -name '*.patch' -o -name '*.diff' \) -print0 | sort -z)
+          done
 
       - name: Apply SUSFS patches
         if: ${{ inputs.susfs_support == true }}
@@ -256,9 +253,9 @@ jobs:
         id: collect_rej
         run: |
           mkdir -p rej
-          found="false"
+          found=false
           while IFS= read -r -d '' f; do
-            found="true"
+            found=true
             mkdir -p "rej/$(dirname "$f")"
             cp "$f" "rej/$f"
             orig="${f%.rej}"
