@@ -11,7 +11,7 @@ on:
         description: 'Kernel source repo'
         required: false
         type: string
-        default: 'https://github.com/LineageOS/android_kernel_nothing_sm8475.git'
+        default: 'https://github.com/Nothing-2A/android_kernel_nothing_mt6886.git'
       kernel_branch:
         description: 'Kernel branch'
         required: false
@@ -41,7 +41,7 @@ on:
         description: 'SUSFS branch (also selects patch name)'
         required: false
         type: string
-        default: 'gki-android13-5.10'
+        default: 'gki-android13-5.15'
       extra_patches_dir:
         description: 'Extra patch directory (repo-local)'
         required: false
@@ -68,7 +68,7 @@ on:
       kernel_repo:
         required: false
         type: string
-        default: 'https://github.com/LineageOS/android_kernel_nothing_sm8475.git'
+        default: 'https://github.com/Nothing-2A/android_kernel_nothing_mt6886.git'
       kernel_branch:
         required: false
         type: string
@@ -93,7 +93,7 @@ on:
       susfs_branch:
         required: false
         type: string
-        default: 'gki-android13-5.10'
+        default: 'gki-android13-5.15'
       extra_patches_dir:
         required: false
         type: string
@@ -157,7 +157,7 @@ jobs:
       - name: Clone sources
         run: |
           git clone --depth=1 -b "${{ inputs.kernel_branch || 'lineage-23.2' }}" \
-            "${{ inputs.kernel_repo || 'https://github.com/LineageOS/android_kernel_nothing_sm8475.git' }}" \
+            "${{ inputs.kernel_repo || 'https://github.com/Nothing-2A/android_kernel_nothing_mt6886.git' }}" \
             "$KERNEL_DIR"
 
           git clone --depth=1 https://github.com/mistrmochov/AnyKernel3.git "$ANYKERNEL_DIR"
@@ -166,7 +166,7 @@ jobs:
       - name: Clone SUSFS
         if: ${{ inputs.susfs_support == true }}
         run: |
-          git clone --depth=1 -b "${{ inputs.susfs_branch || 'gki-android13-5.10' }}" \
+          git clone --depth=1 -b "${{ inputs.susfs_branch || 'gki-android13-5.15' }}" \
             https://gitlab.com/simonpunk/susfs4ksu.git
 
       - name: Setup KernelSU-Next
@@ -194,7 +194,7 @@ jobs:
           cd "$KERNEL_DIR"
           cp ../susfs4ksu/kernel_patches/fs/* ./fs/
           cp ../susfs4ksu/kernel_patches/include/linux/* ./include/linux/
-          susfs_patch="../susfs4ksu/kernel_patches/50_add_susfs_in_${{ inputs.susfs_branch || 'gki-android13-5.10' }}.patch"
+          susfs_patch="../susfs4ksu/kernel_patches/50_add_susfs_in_${{ inputs.susfs_branch || 'gki-android13-5.15' }}.patch"
           if [ "${{ inputs.susfs_force }}" = "true" ]; then
             patch -p1 --force < "$susfs_patch" || echo "Continuing despite patch failure"
           else

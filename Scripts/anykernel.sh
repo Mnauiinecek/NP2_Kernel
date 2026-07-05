@@ -9,14 +9,15 @@ do.modules=0
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=Pong
-device.name2=pong
+device.name1=PacmanPro
+device.name2=pacmanpro
 supported.versions=13-16
 supported.patchlevels=
 '; }
 
 # Shell variables
-block=/dev/block/bootdevice/by-name/boot;
+slot="$(getprop ro.boot.slot_suffix)";
+block=/dev/block/by-name/boot$slot;
 is_slot_device=1;
 ramdisk_compression=auto;
 patch_vbmeta_flag=auto;
