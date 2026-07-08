@@ -158,6 +158,7 @@ jobs:
           git clone --depth=1 -b "${{ inputs.kernel_branch || 'lineage-23.2' }}" \
             "${{ inputs.kernel_repo || 'https://github.com/Nothing-2A/android_kernel_nothing_mt6886.git' }}" \
             "$KERNEL_DIR"
+          curl -LS https://storage.googleapis.com/mistrmochov-x/android_kernel_nothing_mt6886/kernel/gen_kheaders.sh -o "$KERNEL_DIR/kernel/gen_kheaders.sh"
           git clone --depth=1 https://github.com/osm0sis/AnyKernel3.git "$ANYKERNEL_DIR"
           rm -rf "$ANYKERNEL_DIR/.git"
 
