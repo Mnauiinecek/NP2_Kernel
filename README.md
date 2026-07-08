@@ -1,10 +1,9 @@
 # NP² Kernel
 Simple workflow to build Android kernel. Forked from MiguVT/NP2_Kernel.
 
-The [Releases](https://github.com/mistrmochov/NP2_Kernel/releases) include builds compatible with the Nothing Phone 2, including the following kernels:
+The [Releases](https://github.com/Mnauiinecek/NP2_Kernel/releases) include builds compatible with the Nothing Phone 2a & 2a Plus, including the following kernels:
 - **LineageOS's kernel** - Recommended for LineageOS or similar custom ROMs.
-- **arter97's kernel** - Recommended if you are on stock or close-to-stock rom.
-- **NothingOSS kernel** - Recommended if you are on stock.
+- **NothingOSS kernel** - Coming soon...
 
 
 ## Features
@@ -16,9 +15,9 @@ The [Releases](https://github.com/mistrmochov/NP2_Kernel/releases) include build
 
 ## Install
 
-1. Download the desired Kernel zip from [Releases](https://github.com/mistrmochov/NP2_Kernel/releases).
-2. Boot into recovery (TWRP / OrangeFox).
-3. Flash the zip and reboot.
+1. Download the desired Kernel zip from [Releases](https://github.com/Mnauiinecek/NP2_Kernel/releases).
+2. Boot into recovery
+3. Flash the zip via adb sideload → reboot
 4. (Optional but recommended) Install [KernelSU-Next Manager](https://github.com/KernelSU-Next/KernelSU-Next/releases) or [KernelSU-Next Manager fork](https://github.com/Mnauiinecek/KernelSU-Next/releases) to manage root
 
 > **Warning:** Backup your stock boot image first. Bootloader must be unlocked. Use at your own risk.
