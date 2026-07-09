@@ -18,7 +18,7 @@ jobs:
             kernel_type: LineageOS
 
             susfs_support: true
-            bbg_support: true
+            bbg_support: false
             susfs_force: false
             extra_configs: 'vendor/waipio_GKI.config vendor/nothing/waipio_GKI.config vendor/debugfs.config'
 
