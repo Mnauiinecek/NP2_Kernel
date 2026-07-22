@@ -9,8 +9,8 @@ do.modules=0
 do.systemless=0
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=Pong
-device.name2=pong
+device.name1=PacmanPro
+device.name2=pacmanpro
 supported.versions=13 - 16
 supported.patchlevels=
 '; }
