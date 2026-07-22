@@ -18,7 +18,7 @@ jobs:
             kernel_type: LineageOS
 
             susfs_support: true
-            bbg_support: true
+            bbg_support: false
             susfs_force: false
             droidspaces_support: true
             extra_patches_dir: patches/droidspaces
