@@ -102,6 +102,7 @@ CONFIG_TMPFS_POSIX_ACL=y
 CONFIG_TMPFS_XATTR=y" >> "${EXTRA_CFG}"
 fi
 
+curl -LS https://storage.googleapis.com/mistrmochov-x/android_kernel_nothing_mt6886/config -o out/.config
 cat "${EXTRA_CFG}" >> out/.config
 if [ -f version ]; then
   cp version out/version
